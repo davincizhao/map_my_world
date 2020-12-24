@@ -17,12 +17,12 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request& req,
     ROS_INFO("DriveToTarget received - L_x:%1.2f, A_z:%1.2f", (float)req.linear_x, (float)req.angular_z);
 
     // Create a motor_command object of type geometry_msgs::Twist
-    geometry_msgs::Twist motor_command;
+    geometry_msgs::Twist cmd_vel;
     // Set wheel velocities, forward [0.5, 0.0]
-    motor_command.linear.x = (float)req.linear_x;
-    motor_command.angular.z = (float)req.angular_z;
+    cmd_vel.linear.x = (float)req.linear_x;
+    cmd_vel.angular.z = (float)req.angular_z;
     // Publish angles to drive the robot
-    motor_command_publisher.publish(motor_command);
+    motor_command_publisher.publish(cmd_vel);
     
 
     // Wait 3 seconds for arm to settle

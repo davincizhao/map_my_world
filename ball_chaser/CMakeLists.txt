@@ -57,8 +57,8 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
    FILES
    DriveToTarget.srv
-#   Service2.srv
- )
+
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -71,7 +71,7 @@ add_service_files(
 generate_messages(
    DEPENDENCIES
    std_msgs
- )
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -201,9 +201,9 @@ add_executable(${PROJECT_NAME}_node src/drive_bot.cpp)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(ball_chaser src/drive_bot.cpp)
+add_executable(drive_bot src/drive_bot.cpp)
 
-target_link_libraries(ball_chaser ${catkin_LIBRARIES})
-add_dependencies(ball_chaser ball_chaser_generate_messages_cpp)
+target_link_libraries(drive_bot ${catkin_LIBRARIES})
+add_dependencies(drive_bot ball_chaser_generate_messages_cpp)
 
 
