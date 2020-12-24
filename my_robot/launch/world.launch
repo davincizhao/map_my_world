@@ -16,7 +16,7 @@
 
 
   <!-- World File -->
-  <arg name="world_file" default="$(find my_robot)/worlds/empty.world"/>
+  <arg name="world_file" default="$(find my_robot)/worlds/house_with_robot.world"/>
 
   <!-- Launch Gazebo World -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -26,7 +26,7 @@
     <arg name="world_name" value="$(arg world_file)"/>
   </include>
 
-<!-- Find my robot Description-->
+  <!-- Find my robot Description-->
   <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find my_robot)/urdf/my_robot.xacro'"/>
 
   <!-- Spawn My Robot -->
@@ -35,6 +35,8 @@
               -x $(arg x) -y $(arg y) -z $(arg z)
               -R $(arg roll) -P $(arg pitch) -Y $(arg yaw)"/>
 
+  <!--launch rviz-->
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
 
 </launch>
 
