@@ -34,7 +34,36 @@ void process_image_callback(const sensor_msgs::Image img)
     // Then, identify if this pixel falls in the left, mid, or right side of the image
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
+    for(int row = 0; row < img.height; row ++)
+    {
+         for(int column = 0; column < img.width; column ++)
+	 {
+	 	if(img.data[row][column] == white_pixel)
+		{
+			//if ball in left, turn to left
+			if(column <  img.width / 3)			
+			{
+				drive_robot(0.0, -0.1);
+			}
+			//if ball in right, turn to right
+			if(column >= 2 * img.width / 3) 			
+			{
+										
+				drive_robot(0.0, 0.1);
+			}
+
+			//if ball in middle, drive forward
+			if(column > img.width / 3)&&(column < 2 * img.width /3 )			
+			{
+				drive_robot( 0.0, 0.0);
+				drive_robot( 0.5, 0.0);
+			}
+
+		}
+	 }
+    }
 }
+
 
 int main(int argc, char** argv)
 {
@@ -43,7 +72,7 @@ int main(int argc, char** argv)
     ros::NodeHandle n;
 
     // Define a client service capable of requesting services from command_robot
-    client = n.serviceClient<ball_chaser::DriveToTarget>("/ball_chaser/command_robot");
+    client = n.serviceClient<ball_chaser::DriveToTarget>("/drive_bot/command_robot");
 
     // Subscribe to /camera/rgb/image_raw topic to read the image data inside the process_image_callback function
     ros::Subscriber sub1 = n.subscribe("/camera/rgb/image_raw", 10, process_image_callback);
