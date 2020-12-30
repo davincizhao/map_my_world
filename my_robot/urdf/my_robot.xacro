@@ -4,6 +4,18 @@
 
   <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
 
+  <material name="blue">
+    <color rgba= "0 0 1 1"/>
+  </material>
+  <material name="grey">
+    <color rgba="0.75 0.75 0.75 1"/>
+  </material>
+  <gazebo reference="chassis">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+
+  <!-- robot model -->
+
   <link name="robot_footprint"></link>
 
   <joint name="robot_footprint_joint" type="fixed">
@@ -28,44 +40,47 @@
     <collision name='collision'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/> 
       <geometry>
-        <cylinder radius="0.3" length="0.08"/>
+        <cylinder radius="0.3" length="0.1"/>
       </geometry>
     </collision>
 
     <visual name='chassis_visual'>
       <origin xyz="0 0 0" rpy=" 0 0 0"/>
       <geometry>
-        <cylinder radius="0.3" length="0.08"/>
+        <cylinder radius="0.3" length="0.1"/>
       </geometry>
+      <material name="blue"/>
     </visual>
 
 
     <collision name='back_caster_collision'>
-      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <origin xyz="-0.25 0 -0.05" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.0499"/>
       </geometry>
     </collision>
 
     <visual name='back_caster_visual'>
-      <origin xyz="-0.15 0 -0.05" rpy=" 0 0 0"/>
+      <origin xyz="-0.25 0 -0.05" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
+      <material name="grey"/>
     </visual>
 
     <collision name='front_caster_collision'>
-      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
+      <origin xyz="0.25 0 -0.05" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.0499"/>
       </geometry>
     </collision>
 
     <visual name='front_caster_visual'>
-      <origin xyz="0.15 0 -0.05" rpy=" 0 0 0"/>
+      <origin xyz="0.25 0 -0.05" rpy=" 0 0 0"/>
       <geometry>
         <sphere radius="0.05"/>
       </geometry>
+      <material name="grey"/>
     </visual>
 
   </link>
@@ -86,14 +101,14 @@
     <collision name='left_w_collision'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
       <geometry>
-        <cylinder radius="0.08" length="0.05"/>
+        <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </collision>
 
     <visual name='left_w_visual'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.08" length="0.05"/>
+        <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </visual>
   </link>
@@ -114,20 +129,20 @@
     <collision name='right_w_collision'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/> 
       <geometry>
-        <cylinder radius="0.08" length="0.05"/>
+        <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </collision>
 
     <visual name='right_w_visual'>
       <origin xyz="0 0 0" rpy=" 0 1.5707 1.5707"/>
       <geometry>
-        <cylinder radius="0.08" length="0.05"/>
+        <cylinder radius="0.1" length="0.05"/>
       </geometry>
     </visual>
   </link>
 
   <joint type="continuous" name="left_wheel_hinge">
-    <origin xyz="0 0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 0.25 0" rpy="0 0 0"/>
     <child link="left_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -137,7 +152,7 @@
 
 
   <joint type="continuous" name="right_wheel_hinge">
-    <origin xyz="0 -0.15 0" rpy="0 0 0"/>
+    <origin xyz="0 -0.25 0" rpy="0 0 0"/>
     <child link="right_wheel"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -179,7 +194,7 @@
   </link>
 
   <joint type="fixed" name="camera_joint">
-    <origin xyz="0.2 0 0" rpy="0 0 0"/>
+    <origin xyz="0.25 0 0.1" rpy="0 0 0"/>
     <child link="camera"/>
     <parent link="robot_footprint"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
@@ -216,7 +231,7 @@
   </link>
 
   <joint type="fixed" name="hokuyo_joint">
-    <origin xyz="0.15 0 0.1" rpy="0 0 0"/>
+    <origin xyz="0.0 0 0.1" rpy="0 0 0"/>
     <child link="hokuyo"/>
     <parent link="chassis"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
