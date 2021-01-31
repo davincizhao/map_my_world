@@ -164,7 +164,7 @@
     <dynamics damping="1.0" friction="1.0"/>
   </joint>
 
-  <link name='camera'>
+  <link name='camera_link'>
     
     <inertial>
       <mass value="0.1"/>
@@ -199,7 +199,7 @@
 
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.25 0 0.1" rpy="0 0 0"/>
-    <child link="camera"/>
+    <child link="camera_link"/>
     <parent link="robot_footprint"/>
     <axis xyz="0 1 0" rpy="0 0 0"/>
     <limit effort="10000" velocity="1000"/>
