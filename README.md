@@ -9,3 +9,7 @@ env: unbutn, ROS kinetic,
 7. run "roslaunch my_robot mapping.launch"
 8. open new ternimal repeat 4 step
 9. run "rosrun teleop_twist_keyboard teleop_twist_keyboard.py" 
+
+
+
+rtabmap.db: this is rtabmap database file.
