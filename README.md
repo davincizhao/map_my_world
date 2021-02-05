@@ -8,7 +8,7 @@ env: unbutn, ROS kinetic,
 6. open new ternimal repeat 4 step,
 7. run "roslaunch my_robot mapping.launch"
 8. open new ternimal repeat 4 step
-9. run "rosrun teleop_twist_keyboard teleop_twist_keyboard.py" 
+9. run "roslaunch my_robot teleop.launch" 
 
 
 
